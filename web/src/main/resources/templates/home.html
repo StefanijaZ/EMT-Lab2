@@ -1,0 +1,23 @@
+<section class="jumbotron text-center" xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <h1 class="jumbotron-heading">EMT BOOKS</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Author</th>
+                <th scope="col">Avalaible Copies</th>
+                <th scope="col">Category</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book: ${books}" class="product">
+                <td th:text="${book.getName()}"></td>
+                <td th:text="${book.getAuthor().name}"></td>
+                <td th:text="${book.getAvailableCopies()}"></td>
+                <td th:text="${book.getCategory()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

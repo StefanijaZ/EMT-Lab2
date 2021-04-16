@@ -1,0 +1,111 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">EMT 2021 SHOP</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <form action="/books/add" method="POST">
+                    <input id="id" type="hidden" name="id" th:value="(${book} != null ? ${book.getId()} : '')">
+                    <div class="form-group">
+                        <label for="name">Book name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               name="name"
+                               th:value="(${book} != null ? ${book.getName()} : '')"
+                               required
+                               placeholder="Enter book name">
+                    </div>
+
+
+                    <div class="form-group">
+                        <!--                        <label for="category">Category</label>-->
+                        <!--                        <input type="text"-->
+                        <!--                               class="form-control"-->
+                        <!--                               id="category"-->
+                        <!--                               name="category"-->
+                        <!--                               th:value="(${book} != null ? ${book.getCategory()} : '')"-->
+                        <!--                               placeholder="Category">-->
+                        <label>Category</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="category" type="radio" id="NOVEL" value="NOVEL">
+                            <label class="form-check-label" for="NOVEL">NOVEL</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="category"  type="radio" id="THRILER" value="THRILER">
+                            <label class="form-check-label" for="THRILER">THRILER</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="category" type="radio" id="HISTORY" value="HISTORY">
+                            <label class="form-check-label" for="HISTORY">HISTORY</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="category"  type="radio" id="FANTASY" value="FANTASY">
+                            <label class="form-check-label" for="FANTASY">FANTASY</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="category" type="radio" id="BIOGRAPHY" value="BIOGRAPHY">
+                            <label class="form-check-label" for="BIOGRAPHY">BIOGRAPHY</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="category"  type="radio" id="CLASSICS" value="CLASSICS">
+                            <label class="form-check-label" for="CLASSICS">CLASSICS</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="category"  type="radio" id="DRAMA" value="DRAMA">
+                            <label class="form-check-label" for="CLASSICS">DRAMA</label>
+                        </div>
+
+                    </div>
+
+
+<!--                    <div class="form-group">-->
+<!--                        <label for="author">Author</label>-->
+<!--                        <input type="number"-->
+<!--                               class="form-control"-->
+<!--                               id="author"-->
+<!--                               name="author"-->
+<!--                               th:value="(${book} != null ? ${book.getAuthorId()} : '')"-->
+<!--                               placeholder="Author">-->
+<!--                    </div>-->
+
+                    <div class="form-group">
+                        <label>Author</label>
+                        <select name="author" class="form-control">
+                            <option th:if="${book} != null"
+                                    th:selected="${book.getAuthor() != null &&
+                                book.getAuthor().getId() == auth.getId()}"
+                                    th:each="auth : ${authors}"
+                                    th:value="${auth.getId()}"
+                                    th:text="${auth.getName()}">
+                            </option>
+                            <option th:if="${books} == null"
+                                    th:each="auth : ${authors}"
+                                    th:value="${auth.getId()}"
+                                    th:text="${auth.getName()}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="availableCopies">Available Copies</label>
+                        <input type="number"
+                               class="form-control"
+                               id="availableCopies"
+                               name="availableCopies"
+                               th:value="(${book} != null ? ${book.getAvailableCopies()} : '')"
+                               placeholder="Available Copies">
+                    </div>
+
+                    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <a type="button" class="btn btn-primary" href="/books">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</th:block>

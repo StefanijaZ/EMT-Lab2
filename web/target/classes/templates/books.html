@@ -1,0 +1,69 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">EMT 2021 SHOP</h1>
+            <h3 class="jumbotron-heading">All books</h3>
+        </div>
+    </section>
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Available Copies</th>
+                            <th scope="col">Category</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="book: ${books}" class="product">
+                            <td th:text="${book.getName()}"></td>
+                            <td th:text="${book.getAuthor().name}"></td>
+                            <td th:text="${book.getAvailableCopies()}"></td>
+                            <td th:text="${book.getCategory()}"></td>
+
+                            <!--                            <td class="text-right">-->
+                            <!--                                <th:block sec:authorize="hasRole('ROLE_ADMIN')">-->
+                            <!--                                    <form th:action="@{'/products/delete/{id}' (id=${product.getId()})}"-->
+                            <!--                                          th:method="DELETE">-->
+                            <!--                                        <button type="submit"-->
+                            <!--                                                class="btn btn-sm btn-danger delete-product">-->
+                            <!--                                            <i class="fa fa-trash">Delete</i>-->
+                            <!--                                        </button>-->
+                            <!--                                    </form>-->
+                            <!--                                </th:block>-->
+                            <!--                                <th:block sec:authorize="hasRole('ROLE_ADMIN')">-->
+                            <!--                                    <a th:href="@{'/products/edit-form/{id}' (id=${product.getId()})}"-->
+                            <!--                                       class="btn btn-sm btn-info edit-product">-->
+                            <!--                                        <i class="fa fa-trash">Edit</i>-->
+                            <!--                                    </a>-->
+                            <!--                                </th:block>-->
+                            <!--                                <form th:action="@{'/shopping-cart/add-product/{id}' (id=${product.getId()})}"-->
+                            <!--                                      th:method="POST"-->
+                            <!--                                      sec:authorize="isAuthenticated()">-->
+                            <!--                                    <button type="submit"-->
+                            <!--                                            class="btn btn-sm btn-primary cart-product">-->
+                            <!--                                        <i class="fa fa-trash">Add product to cart</i>-->
+                            <!--                                    </button>-->
+                            <!--                                </form>-->
+                            <!--                            </td>-->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col mb-3">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <a href="/books/add-form" class="btn btn-block btn-dark add-product-btn">
+                            Add new book
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
